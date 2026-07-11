@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Playfair Display", "Georgia", serif;
+  --font-script: "Great Vibes", "Cormorant Garamond", cursive;
+  --font-serif: "Cormorant Garamond", "Georgia", serif;
+  --font-body: "Poppins", system-ui, sans-serif;
+
+  --color-espresso: #241108;
+  --color-espresso-light: #3a1d10;
+  --color-cocoa: #52281a;
+  --color-cocoa-light: #6b3823;
+  --color-cherry: #b3122c;
+  --color-cherry-light: #d81e3f;
+  --color-cherry-dark: #7a0a1e;
+  --color-forest: #29452e;
+  --color-forest-light: #3d6444;
+  --color-cream: #fdf6ec;
+  --color-cream-dark: #f5e9d6;
+  --color-parchment: #faf1e2;
+  --color-gold: #cd9b3f;
+  --color-gold-light: #e6c777;
+  --color-gold-dark: #a87a2a;
+
+  --shadow-soft: 0 20px 60px -15px rgba(36, 17, 8, 0.35);
+  --shadow-glow: 0 0 40px rgba(205, 155, 63, 0.35);
+
+  --animate-fade-up: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-shimmer: shimmer 2.5s linear infinite;
+  --animate-marquee: marquee 32s linear infinite;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(-1deg); }
+    50% { transform: translateY(-16px) rotate(1deg); }
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-cream);
+  color: var(--color-espresso);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-cherry);
+  color: var(--color-cream);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-cream-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-cocoa-light);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-cherry);
+}
+
+.text-outline {
+  -webkit-text-stroke: 1.5px var(--color-gold);
+  color: transparent;
+}
+
+.font-script {
+  font-family: var(--font-script);
+}
