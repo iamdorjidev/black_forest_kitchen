@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Star, ArrowDown } from "lucide-react";
 import { SITE } from "../config";
-import LogoMedallion from "./LogoMedallion";
 
 const FLOATERS = [
   { src: "/images/cakes/golden-honey-heart.webp", className: "top-[8%] left-[3%] w-28 md:w-40", delay: 0, tiltDir: 1 },
@@ -53,18 +52,9 @@ export default function Hero() {
 
       <div className="relative z-10 max-w-4xl mx-auto text-center px-6 pt-24">
         <motion.div
-          initial={{ opacity: 0, y: -20, scale: 0.85 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-6 scale-[0.8] sm:scale-90 md:scale-100"
-        >
-          <LogoMedallion size={150} />
-        </motion.div>
-
-        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.15 }}
+          transition={{ duration: 0.8 }}
           className="inline-flex items-center gap-2 bg-cream/10 border border-gold/30 backdrop-blur-sm rounded-full px-5 py-2 mb-8"
         >
           <div className="flex text-gold">
