@@ -1,3 +1,4 @@
+import { useRef, useState } from "react";
 import { Star, Quote } from "lucide-react";
 import Reveal from "./Reveal";
 import { REVIEWS } from "../data/reviews";
@@ -34,6 +35,14 @@ function ReviewCard({ review }: { review: (typeof REVIEWS)[number] }) {
 
 export default function Reviews() {
   const loopReviews = [...REVIEWS, ...REVIEWS];
+  const [paused, setPaused] = useState(false);
+  const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const pauseForAWhile = () => {
+    setPaused(true);
+    if (resumeTimer.current) clearTimeout(resumeTimer.current);
+    resumeTimer.current = setTimeout(() => setPaused(false), 2500);
+  };
 
   return (
     <section id="reviews" className="relative bg-espresso py-24 md:py-32 overflow-hidden">
@@ -84,7 +93,12 @@ export default function Reviews() {
       <div className="relative">
         <div className="absolute inset-y-0 left-0 w-16 md:w-40 bg-gradient-to-r from-espresso to-transparent z-10" />
         <div className="absolute inset-y-0 right-0 w-16 md:w-40 bg-gradient-to-l from-espresso to-transparent z-10" />
-        <div className="flex w-max animate-marquee hover:[animation-play-state:paused]">
+        <div
+          className="flex w-max animate-marquee hover:[animation-play-state:paused]"
+          style={paused ? { animationPlayState: "paused" } : undefined}
+          onTouchStart={pauseForAWhile}
+          onTouchMove={pauseForAWhile}
+        >
           {loopReviews.map((review, i) => (
             <ReviewCard key={`${review.id}-${i}`} review={review} />
           ))}

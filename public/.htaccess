@@ -1,0 +1,14 @@
+# SPA fallback: let React Router handle client-side routes like /admin
+# so a direct visit or page refresh doesn't 404.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Serve real files and folders (JS, CSS, images) as-is
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Everything else falls back to index.html
+  RewriteRule . /index.html [L]
+</IfModule>
