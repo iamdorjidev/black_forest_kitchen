@@ -118,6 +118,30 @@ export default function Hero() {
             Our Story
           </a>
         </motion.div>
+
+        {/* mobile-only taste of our cakes, since the floating photos are desktop-only */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.9 }}
+          className="sm:hidden -mx-6 mt-12"
+        >
+          <p className="text-cream/40 text-xs uppercase tracking-[0.2em] mb-3">Fresh from our kitchen</p>
+          <div className="relative overflow-hidden">
+            <div className="absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-espresso to-transparent z-10" />
+            <div className="absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-espresso to-transparent z-10" />
+            <div className="flex w-max animate-marquee gap-4 px-4">
+              {[...FLOATERS, ...FLOATERS].map((f, i) => (
+                <img
+                  key={i}
+                  src={f.src}
+                  alt=""
+                  className="w-20 h-20 rounded-2xl object-cover ring-2 ring-gold/30 shadow-lg flex-shrink-0"
+                />
+              ))}
+            </div>
+          </div>
+        </motion.div>
       </div>
 
       <motion.a

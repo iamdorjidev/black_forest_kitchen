@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ShoppingBag } from "lucide-react";
+import { Menu, X, ShoppingBag, Home as HomeIcon, Cake, Heart, Star, Mail } from "lucide-react";
 import { useCartStore } from "../store/useCartStore";
+import { SITE } from "../config";
 
 const LINKS = [
-  { label: "Home", href: "#home" },
-  { label: "Our Cakes", href: "#menu" },
-  { label: "Our Story", href: "#about" },
-  { label: "Reviews", href: "#reviews" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "#home", icon: HomeIcon },
+  { label: "Our Cakes", href: "#menu", icon: Cake },
+  { label: "Our Story", href: "#about", icon: Heart },
+  { label: "Reviews", href: "#reviews", icon: Star },
+  { label: "Contact", href: "#contact", icon: Mail },
 ];
 
 export default function Navbar() {
@@ -92,21 +93,43 @@ export default function Navbar() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             className="md:hidden overflow-hidden bg-cream border-t border-cocoa/10"
           >
-            <div className="flex flex-col px-6 py-4 gap-4">
-              {LINKS.map((link) => (
-                <a
+            <div className="flex flex-col px-4 py-3">
+              {LINKS.map((link, i) => (
+                <motion.a
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="font-body text-espresso text-base py-1"
+                  initial={{ opacity: 0, x: -12 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.06, duration: 0.35, ease: "easeOut" }}
+                  className="group flex items-center gap-4 py-3.5 px-3 rounded-xl font-body text-espresso text-base border-b border-cocoa/8 last:border-0 active:bg-cherry/5 transition-colors"
                 >
+                  <span className="w-9 h-9 rounded-full bg-cherry/10 text-cherry flex items-center justify-center flex-shrink-0 group-active:scale-90 transition-transform">
+                    <link.icon size={16} />
+                  </span>
                   {link.label}
-                </a>
+                </motion.a>
               ))}
             </div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: LINKS.length * 0.06 + 0.1, duration: 0.4 }}
+              className="flex items-center justify-center gap-2 px-6 pb-6 pt-2"
+            >
+              <div className="flex text-gold">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} size={12} fill="currentColor" strokeWidth={0} />
+                ))}
+              </div>
+              <span className="text-espresso/50 text-xs">
+                {SITE.rating.toFixed(1)} · {SITE.reviewCount} Google Reviews
+              </span>
+            </motion.div>
           </motion.nav>
         )}
       </AnimatePresence>
