@@ -50,7 +50,7 @@ export default function Hero() {
         </div>
       ))}
 
-      <div className="relative z-10 max-w-4xl mx-auto text-center px-6 pt-24">
+      <div className="relative z-10 max-w-4xl w-full min-w-0 mx-auto text-center px-6 pt-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -80,7 +80,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display text-cream text-5xl sm:text-6xl md:text-7xl font-semibold leading-[1.05] mb-6"
+          className="font-display text-cream text-4xl sm:text-6xl md:text-7xl font-semibold leading-[1.1] sm:leading-[1.05] mb-6 break-words"
         >
           Handcrafted Cakes for
           <br />
